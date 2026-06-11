@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvServerStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚫ Serveur arrêté"
+                android:textColor="@color/grey_inactive"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvClientCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0 musicien connecté"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvHotspotInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnStartServer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="▶ Démarrer"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnStopServer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="■ Arrêter"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCurrentSong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Aucun chant sélectionné —"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnKeyDown"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="−"
+                    android:textSize="20sp"
+                    android:padding="0dp" />
+
+                <TextView
+                    android:id="@+id/tvCurrentKey"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="C"
+                    android:textColor="@color/accent"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <Button
+                    android:id="@+id/btnKeyUp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="+"
+                    android:textSize="20sp"
+                    android:padding="0dp"
+                    android:layout_marginEnd="24dp" />
+
+                <Button
+                    android:id="@+id/btnBpmDown"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="−"
+                    android:textSize="20sp"
+                    android:padding="0dp" />
+
+                <TextView
+                    android:id="@+id/tvCurrentBpm"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:text="80 BPM"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+
+                <Button
+                    android:id="@+id/btnBpmUp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="+"
+                    android:textSize="20sp"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:id="@+id/btnMetronome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="♩ Métronome"
+                    android:layout_marginEnd="12dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMetronomeStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Métronome OFF"
+                    app:chipBackgroundColor="@color/grey_inactive" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSendAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔔 Envoyer une alerte"
+                android:layout_marginBottom="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSetlist"
+                android:layout_width="match_parent"
+                android:layout_height="320dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:contentDescription="Précédent"
+        app:srcCompat="@android:drawable/ic_media_rew" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Suivant"
+        app:srcCompat="@android:drawable/ic_media_ff" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

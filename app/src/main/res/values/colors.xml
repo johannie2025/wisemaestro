@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs principales Wise Maestro -->
+    <color name="primary">#1A1A2E</color>
+    <color name="primary_dark">#0D0D0D</color>
+    <color name="accent">#F4C430</color>
+
+    <!-- Rôles -->
+    <color name="color_maestro">#F4C430</color>
+    <color name="color_chantre">#E8A0BF</color>
+    <color name="color_musicien">#7EC8E3</color>
+    <color name="color_choriste">#A8E6CF</color>
+    <color name="color_projecteur">#FFB347</color>
+
+    <!-- Statuts Live -->
+    <color name="green_live">#4CAF50</color>
+    <color name="grey_inactive">#757575</color>
+    <color name="alert_urgent">#E53935</color>
+    <color name="alert_info">#FB8C00</color>
+
+    <!-- Textes -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="text_hint">#555555</color>
+
+    <!-- Cartes -->
+    <color name="card_background">#1A1A2E</color>
+    <color name="surface">#16213E</color>
+</resources>

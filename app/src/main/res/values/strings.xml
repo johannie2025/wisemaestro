@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wise Maestro</string>
+    <string name="app_subtitle">Coordination musicale live</string>
+
+    <!-- Rôles -->
+    <string name="role_maestro">Maestro</string>
+    <string name="role_chantre">Chantre</string>
+    <string name="role_musicien">Musicien</string>
+    <string name="role_choriste">Choriste</string>
+    <string name="role_projecteur">Projecteur</string>
+    <string name="choose_role">Choisissez votre rôle</string>
+
+    <!-- Connexion -->
+    <string name="searching_maestro">Recherche du Maestro…</string>
+    <string name="connected_to_maestro">Connecté au Maestro</string>
+    <string name="disconnected">Déconnecté</string>
+    <string name="reconnecting">Reconnexion…</string>
+    <string name="maestro_lost">Le Maestro s\'est déconnecté</string>
+
+    <!-- Serveur -->
+    <string name="server_live_active">🟢 Serveur LIVE actif</string>
+    <string name="server_stopped">⚫ Serveur arrêté</string>
+    <string name="start_server">Démarrer la session live</string>
+    <string name="stop_server">Arrêter la session</string>
+    <string name="stop_server_confirm">Tous les musiciens seront déconnectés.</string>
+
+    <!-- Hotspot -->
+    <string name="hotspot_ssid">WiseMaestro</string>
+    <string name="hotspot_password">wisemaestro2025</string>
+    <string name="hotspot_info">Réseau : WiseMaestro | MDP : wisemaestro2025</string>
+
+    <!-- Performance -->
+    <string name="bpm_label">BPM</string>
+    <string name="key_label">Ton.</string>
+    <string name="metronome_on">♩ Métronome ON</string>
+    <string name="metronome_off">Métronome OFF</string>
+    <string name="send_alert">Alerte</string>
+
+    <!-- Voix choriste -->
+    <string name="voice_soprano">Soprano</string>
+    <string name="voice_alto">Alto</string>
+    <string name="voice_tenor">Ténor</string>
+    <string name="voice_basse">Basse</string>
+    <string name="choose_voice">Quelle est ta voix ?</string>
+
+    <!-- Menus -->
+    <string name="menu_change_role">Changer de rôle</string>
+    <string name="menu_library">Bibliothèque</string>
+    <string name="menu_settings">Paramètres</string>
+
+    <!-- Bibliothèque -->
+    <string name="library_songs">Chants</string>
+    <string name="library_setlists">Setlists</string>
+    <string name="library_weekly">Semaine</string>
+    <string name="add_song">Ajouter un chant</string>
+    <string name="search_songs">Rechercher…</string>
+    <string name="no_songs">Aucun chant pour l\'instant.\nAppuyez sur + pour ajouter.</string>
+
+    <!-- Projecteur -->
+    <string name="projector_blessing">🙏 Que Dieu vous bénisse !</string>
+    <string name="projector_waiting">Connexion au Maestro…</string>
+</resources>

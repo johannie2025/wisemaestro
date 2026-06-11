@@ -1,0 +1,96 @@
+// build.gradle (Module: app)
+// ─────────────────────────────────────────────────────────────────────────────
+// Wise Maestro — Dépendances complètes
+// ─────────────────────────────────────────────────────────────────────────────
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.wisedesign.maestro'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.wisedesign.maestro"
+        minSdk 21          // Android 5.0+ (couvre 99%+ des devices actifs)
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        // Requis pour Room — génère les fichiers de schéma JSON
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                          'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    // Évite les conflits de fichiers META-INF entre dépendances
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
+    }
+}
+
+dependencies {
+
+    // ── AndroidX Core ──────────────────────────────────────────────────────
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+
+    // ── Architecture Components ────────────────────────────────────────────
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.8.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.8.3'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.8.3'
+
+    // ── Room Database ──────────────────────────────────────────────────────
+    // ORM SQLite pour la persistance locale des chants, setlists et pistes
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // Room avec LiveData (observe les changements DB directement depuis l'UI)
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // ── Java-WebSocket ─────────────────────────────────────────────────────
+    // Serveur et client WebSocket embarqué (Maestro ↔ Musiciens)
+    // Dépôt : https://github.com/TooTallNate/Java-WebSocket
+    implementation 'org.java-websocket:Java-WebSocket:1.5.4'
+
+    // ── Gson (Sérialisation JSON) ──────────────────────────────────────────
+    // Conversion LiveCommand ↔ JSON pour le protocole WebSocket
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // ── ExoPlayer (Lecteur Audio pour les pistes d'apprentissage) ──────────
+    // Gère MP3, AAC, OGG, WAV depuis le stockage local
+    def exoplayer_version = "1.3.1"
+    implementation "androidx.media3:media3-exoplayer:$exoplayer_version"
+    implementation "androidx.media3:media3-ui:$exoplayer_version"
+    implementation "androidx.media3:media3-session:$exoplayer_version"
+
+    // ── Tests ──────────────────────────────────────────────────────────────
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    // Tests Room
+    testImplementation "androidx.room:room-testing:$room_version"
+}

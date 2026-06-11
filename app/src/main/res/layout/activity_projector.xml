@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout Projecteur — fond noir total, texte blanc très grand.
+    Conçu pour être lisible à 20 mètres sur un écran de projection.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Écran d'attente avant connexion -->
+    <LinearLayout
+        android:id="@+id/layoutWaiting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🙏"
+            android:textSize="64sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Connexion au Maestro..."
+            android:textColor="#444444"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Contenu principal — paroles + titre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="64dp"
+        android:paddingVertical="48dp">
+
+        <!-- Titre du chant -->
+        <TextView
+            android:id="@+id/tvSongTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#F4C430"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"
+            android:visibility="gone" />
+
+        <!-- Paroles — texte principal -->
+        <TextView
+            android:id="@+id/tvLyrics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:textSize="42sp"
+            android:lineSpacingMultiplier="1.4"
+            android:gravity="center"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Indicateur de connexion — discret, coin bas droit -->
+    <TextView
+        android:id="@+id/tvConnectionDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="12dp"
+        android:text="🔴"
+        android:textSize="10sp"
+        android:alpha="0.4" />
+
+</FrameLayout>
