@@ -1,24 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:orientation="vertical"
+    android:background="#0D0D0D">
 
+    <!-- Header info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical"
+        android:background="#111122">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🎓 Programme de la semaine"
+            android:textColor="#AAAAAA"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvStorageUsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#555566"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Liste des chants + pistes -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLearningTracks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false" />
 
-    <TextView
-        android:id="@+id/tvEmptyLearning"
+    <!-- Mini lecteur audio persistant -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMiniPlayer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Aucune piste d\'apprentissage cette semaine"
-        android:textColor="@color/text_hint"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:visibility="gone" />
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardBackgroundColor="#1A1A2E"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvNowPlaying"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+            <ImageButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/ic_media_pause"
+                android:background="@android:color/transparent"
+                android:contentDescription="Lecture / Pause" />
+
+            <ImageButton
+                android:id="@+id/btnStop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/ic_media_ff"
+                android:background="@android:color/transparent"
+                android:contentDescription="Arrêter" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.wisedesign.maestro.R;
 
 import com.wisedesign.maestro.model.LiveCommand;
 import com.wisedesign.maestro.network.client.MusicianWebSocketClient;

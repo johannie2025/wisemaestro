@@ -4,188 +4,355 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:background="#0D0D0D">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:paddingBottom="80dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvServerStatus"
+            <!-- ══ STATUS SERVEUR ══ -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="⚫ Serveur arrêté"
-                android:textColor="@color/grey_inactive"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
-            <TextView
-                android:id="@+id/tvClientCount"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvServerStatus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="⚫ Serveur arrêté"
+                            android:textColor="#AAAAAA"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvClientCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 musicien"
+                            android:textColor="#F4C430"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvHotspotInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Réseau : WiseMaestro | MDP : wisemaestro2025"
+                        android:textColor="#666666"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btnStartServer"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:text="▶ Démarrer Live"
+                            android:textColor="#0D0D0D"
+                            android:backgroundTint="#F4C430"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnStopServer"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="■ Arrêter"
+                            android:textColor="#FFFFFF"
+                            android:backgroundTint="#E53935"
+                            android:textSize="13sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ══ CHANT COURANT ══ -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 musicien connecté"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#16213E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
-            <TextView
-                android:id="@+id/tvHotspotInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_hint"
-                android:textSize="12sp"
-                android:layout_marginBottom="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHANT ACTUEL"
+                        android:textColor="#555555"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentSong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="— Aucun chant sélectionné —"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <!-- Gamme + BPM -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <!-- Gamme -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="GAMME"
+                                android:textColor="#555555"
+                                android:textSize="10sp"
+                                android:letterSpacing="0.1" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="4dp">
+
+                                <Button
+                                    android:id="@+id/btnKeyDown"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:text="♭"
+                                    android:textSize="16sp"
+                                    android:textColor="#FFFFFF"
+                                    android:backgroundTint="#2A2A4A"
+                                    android:padding="0dp" />
+
+                                <TextView
+                                    android:id="@+id/tvCurrentKey"
+                                    android:layout_width="56dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="C"
+                                    android:textColor="#F4C430"
+                                    android:textSize="28sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                                <Button
+                                    android:id="@+id/btnKeyUp"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:text="♯"
+                                    android:textSize="16sp"
+                                    android:textColor="#FFFFFF"
+                                    android:backgroundTint="#2A2A4A"
+                                    android:padding="0dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Séparateur -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#2A2A4A"
+                            android:layout_marginHorizontal="8dp" />
+
+                        <!-- BPM -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TEMPO"
+                                android:textColor="#555555"
+                                android:textSize="10sp"
+                                android:letterSpacing="0.1" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="4dp">
+
+                                <Button
+                                    android:id="@+id/btnBpmDown"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:text="−"
+                                    android:textSize="20sp"
+                                    android:textColor="#FFFFFF"
+                                    android:backgroundTint="#2A2A4A"
+                                    android:padding="0dp" />
+
+                                <TextView
+                                    android:id="@+id/tvCurrentBpm"
+                                    android:layout_width="72dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:textColor="#7EC8E3"
+                                    android:textSize="28sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                                <Button
+                                    android:id="@+id/btnBpmUp"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:text="+"
+                                    android:textSize="20sp"
+                                    android:textColor="#FFFFFF"
+                                    android:backgroundTint="#2A2A4A"
+                                    android:padding="0dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ══ CONTRÔLES MÉTRONOME + ALERTE ══ -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btnStartServer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="▶ Démarrer"
-                    android:layout_marginEnd="8dp" />
-
-                <Button
-                    android:id="@+id/btnStopServer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="■ Arrêter"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvCurrentSong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="— Aucun chant sélectionné —"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginBottom="12dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="8dp">
-
-                <Button
-                    android:id="@+id/btnKeyDown"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:text="−"
-                    android:textSize="20sp"
-                    android:padding="0dp" />
-
-                <TextView
-                    android:id="@+id/tvCurrentKey"
-                    android:layout_width="64dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textColor="@color/accent"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-
-                <Button
-                    android:id="@+id/btnKeyUp"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:text="+"
-                    android:textSize="20sp"
-                    android:padding="0dp"
-                    android:layout_marginEnd="24dp" />
-
-                <Button
-                    android:id="@+id/btnBpmDown"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:text="−"
-                    android:textSize="20sp"
-                    android:padding="0dp" />
-
-                <TextView
-                    android:id="@+id/tvCurrentBpm"
-                    android:layout_width="92dp"
-                    android:layout_height="wrap_content"
-                    android:text="80 BPM"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp"
-                    android:gravity="center" />
-
-                <Button
-                    android:id="@+id/btnBpmUp"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:text="+"
-                    android:textSize="20sp"
-                    android:padding="0dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
-
-                <Button
-                    android:id="@+id/btnMetronome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="♩ Métronome"
-                    android:layout_marginEnd="12dp" />
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMetronomeStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
                     android:text="Métronome OFF"
-                    app:chipBackgroundColor="@color/grey_inactive" />
+                    android:textColor="#FFFFFF"
+                    app:chipBackgroundColor="#333355"
+                    app:chipCornerRadius="8dp" />
 
+                <Button
+                    android:id="@+id/btnMetronome"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="♩"
+                    android:textSize="20sp"
+                    android:backgroundTint="#2A2A4A"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btnSendAlert"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="📣 Alerte"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#E65100"
+                    android:textSize="13sp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSendAlert"
+            <!-- ══ SETLIST ══ -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🔔 Envoyer une alerte"
-                android:layout_marginBottom="16dp" />
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSetlist"
-                android:layout_width="match_parent"
-                android:layout_height="320dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SETLIST"
+                        android:textColor="#555555"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15"
+                        android:layout_marginBottom="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSetlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="Aucune setlist active\nAllez dans Bibliothèque → Setlists"
+                        android:textColor="#444444"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 
+    <!-- ══ FAB Navigation Précédent / Suivant ══ -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabPrev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="16dp"
+        android:src="@android:drawable/ic_media_previous"
         android:contentDescription="Précédent"
-        app:srcCompat="@android:drawable/ic_media_rew" />
+        app:backgroundTint="#1A1A2E"
+        app:tint="#F4C430" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNext"
@@ -193,7 +360,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:src="@android:drawable/ic_media_next"
         android:contentDescription="Suivant"
-        app:srcCompat="@android:drawable/ic_media_ff" />
+        app:backgroundTint="#F4C430"
+        app:tint="#0D0D0D" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

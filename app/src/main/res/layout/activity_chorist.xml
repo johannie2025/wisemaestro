@@ -1,92 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:orientation="vertical"
+    android:background="#0D0D0D">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
-
-            <TextView
-                android:id="@+id/tvVoicePart"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=""
-                android:textColor="@color/color_choriste"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvConnectionStatus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🔍 Recherche..."
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp"
-                android:gravity="end" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvSongTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="— En attente —"
-            android:textColor="@color/accent"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/tvCurrentKey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/color_choriste"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tvLyrics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:lineSpacingMultiplier="1.6"
-                android:gravity="center" />
-
-        </ScrollView>
-
-    </LinearLayout>
-
+    <!-- ══ BANDEAU ALERTE ══ -->
     <LinearLayout
         android:id="@+id/bannerAlert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@color/alert_urgent"
+        android:orientation="horizontal"
+        android:background="#E53935"
         android:padding="12dp"
+        android:gravity="center_vertical"
         android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📣"
+            android:textSize="18sp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/tvAlertBanner"
@@ -94,10 +31,102 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center" />
-
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
-</FrameLayout>
+    <!-- ══ HEADER : Badge voix + Connexion ══ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Badge voix sélectionnée -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            app:cardBackgroundColor="#1A1A2E"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:id="@+id/tvVoicePart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="16dp"
+                android:text="🎶 Soprano"
+                android:textColor="#A8E6CF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvConnectionStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="🔍 Recherche..."
+            android:textColor="#666666"
+            android:textSize="11sp"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- ══ TITRE + GAMME ══ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvSongTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="En attente..."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Pastille gamme -->
+        <TextView
+            android:id="@+id/tvCurrentKey"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_key_circle"
+            android:text="—"
+            android:textColor="#A8E6CF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- ══ PAROLES ══ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/tvLyrics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Les paroles synchronisées apparaîtront ici\ndès que le Maestro lance un chant."
+            android:textColor="#DDDDDD"
+            android:textSize="20sp"
+            android:lineSpacingMultiplier="1.7"
+            android:gravity="center"
+            android:paddingBottom="24dp" />
+    </ScrollView>
+
+</LinearLayout>

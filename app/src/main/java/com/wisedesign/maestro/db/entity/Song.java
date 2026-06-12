@@ -3,6 +3,7 @@ package com.wisedesign.maestro.db.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -77,7 +78,9 @@ public class Song {
 
     /**
      * Constructeur rapide pour création en live.
+     * @Ignore indique à Room d'utiliser uniquement le constructeur sans args.
      */
+    @Ignore
     public Song(@NonNull String title, String defaultKey, int defaultBpm) {
         this();
         this.title = title;

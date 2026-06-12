@@ -3,6 +3,7 @@ package com.wisedesign.maestro.db.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -80,6 +81,7 @@ public class EventSetlist {
         this.songsJson = "[]";
     }
 
+    @Ignore
     public EventSetlist(@NonNull String eventName, String maestroName) {
         this();
         this.eventName = eventName;

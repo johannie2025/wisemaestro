@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.wisedesign.maestro.R;
 import androidx.cardview.widget.CardView;
 
 /**

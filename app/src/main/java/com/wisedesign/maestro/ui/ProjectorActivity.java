@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.wisedesign.maestro.R;
 
 import com.wisedesign.maestro.model.LiveCommand;
 import com.wisedesign.maestro.network.client.MusicianWebSocketClient;

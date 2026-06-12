@@ -3,12 +3,14 @@ package com.wisedesign.maestro.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wisedesign.maestro.R;
 import com.wisedesign.maestro.model.LiveCommand;
 import com.wisedesign.maestro.network.client.MusicianWebSocketClient;
 import com.wisedesign.maestro.network.discovery.NsdHelper;
@@ -67,7 +69,12 @@ public class MusicianActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_musician);
+        setContentView(R.layout.activity_musician);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("🎸 Musicien");
+        }
 
         initViews();
         startDiscovery();
@@ -85,18 +92,28 @@ public class MusicianActivity extends AppCompatActivity
 
     private void initViews() {
         // Dans votre layout XML, liez ces IDs
-        // tvConnectionStatus = findViewById(R.id.tvConnectionStatus);
-        // tvSongTitle = findViewById(R.id.tvSongTitle);
-        // tvSongKey = findViewById(R.id.tvSongKey);
-        // tvBpm = findViewById(R.id.tvBpm);
-        // tvChordSheet = findViewById(R.id.tvChordSheet);
-        // tvAlertMessage = findViewById(R.id.tvAlertMessage);
-        // tvLatency = findViewById(R.id.tvLatency);
+        tvConnectionStatus = findViewById(R.id.tvConnectionStatus);
+        tvSongTitle        = findViewById(R.id.tvSongTitle);
+        tvSongKey          = findViewById(R.id.tvSongKey);
+        tvBpm              = findViewById(R.id.tvBpm);
+        tvChordSheet       = findViewById(R.id.tvChordSheet);
+        tvAlertMessage     = findViewById(R.id.tvAlertMessage);
+        tvLatency          = findViewById(R.id.tvLatency);
 
         updateConnectionStatus("🔍 Recherche du Maestro...");
     }
 
     // ─── Découverte NSD ──────────────────────────────────────────────────────
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            RoleSelectionActivity.clearSavedRole(this);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void startDiscovery() {
         nsdHelper = new NsdHelper(this, this);
